@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Become a Franchisee: She Codes Final Project</title>
+    <link rel="preconnect" href="https://googleapis.com" />
+    <link rel="preconnect" href="https://gstatic.com" crossorigin />
+    <link
+      href="https://googleapis.com/css2?family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+    <!--^links are Satisfy Google font-->
+    <style>
+      body {
+        background: linear-gradient(#f8f0cf 85%, #00717d);
+      }
+      h1 {
+        text-align: center;
+        font-family: monospace;
+      }
+      h2 {
+        text-align: center;
+        font-family: monospace;
+      }
+      h5 {
+        text-align: center;
+        border: 8px double #00717d;
+        border-radius: 4px;
+        clip-path: polygon(
+          20% 0%,
+          100% 0%,
+          100% 60%,
+          82% 100%,
+          0% 100%,
+          0% 40%
+        );
+        line-height: 50px;
+        padding: 40px;
+        font-size: 18px;
+        box-shadow: 6px 6px 8px rgba(0, 113, 125, 0.45);
+        text-shadow: none;
+        background: #fff;
+      }
+      footer {
+        text-align: center;
+      }
+      button {
+        font-weight: 700;
+      }
+      iframe {
+        display: block;
+        margin: 0 auto;
+        border: 4px solid #f6ac2a;
+        border-radius: 20px;
+        box-shadow: 0 0 25px #f6ac2a;
+        transform: translateY(-99px);
+      }
+      .middle-section {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 30px 60px;
+        text-align: center;
+      }
+      .wrapper {
+        filter: drop-shadow(4px 4px 4px #00717d);
+      }
+      .vocab-terms {
+        position: relative;
+        display: inline-block;
+        margin: 0px 15px 60px 70px;
+        margin-right: 20px;
+        border-bottom: 1px dashed #333;
+        color: #00717d;
+        cursor: help;
+      }
+      .vocab-terms .vocab-definitions {
+        visibility: hidden;
+        opacity: 0;
+        width: 100px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        top: 125%;
+        transition: opacity 0.3s;
+      }
+      .vocab-terms:hover .vocab-definitions {
+        visibility: visible;
+        opacity: 1;
+        font-size: large;
+      }
+      .learn-about-franchising {
+        text-align: center;
+        font-family: monospace;
+      }
+      .last-line-buttons {
+        display: block;
+        /*margin: 20px 220px 180px 90px;*/
+        margin: 15px 0;
+      }
+      .contact-container {
+        .menu-container {
+          font-family:
+            "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+          /*left middle placement*/
+          position: absolute;
+          right: 20px;
+          transform: translateY(100px);
+
+          /*display like an actual menu*/
+          width: 320px;
+          padding: 25px;
+          border: 4px solid #00717d;
+          border-radius: 18px;
+          background-color: #ffff;
+          text-align: right;
+        }
+      }
+      .menu-container {
+        font-family:
+          "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        /*left middle placement*/
+        position: absolute;
+        top: 100px;
+        left: 20px;
+        transform: none;
+
+        /*display like an actual menu*/
+        width: 290px;
+        height: 720px;
+        padding: 25px;
+        border: 4px solid #00717d;
+        border-radius: 18px;
+        background-color: #ffff;
+        text-align: left;
+      }
+      .menu-container p {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #00717d;
+      }
+      .menu-container button {
+        margin-top: 8px;
+        padding: 8px 14px;
+        border: thin;
+        border-radius: 8px;
+        cursor: pointer;
+        color: #00717d;
+      }
+      .menu-container button:hover {
+        background: #00717d;
+        color: #ffff;
+        cursor: pointer;
+      }
+      .pathway-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /*two columns side by side*/
+        gap: 0px 60px 40px; /*space between buttons used to be 60px 20px */
+        justify-items: center;
+        margin-top: 50px;
+        width: 100%;
+        /*
+        justify-items: center; /*center buttons in the grid area
+        padding: 100px 20px; space for descriptions to appear at the top
+        */
+      }
+      /*make the last item center itself*/
+      .last-item {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        grid-column: 1 / span 2; /*start at column 1 and span 2 */
+      }
+      /*container holds the buttons and description together*/
+      .pathway-item {
+        position: relative;
+        /*display: inline-block;*/
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        /*
+        width: fit-content;
+        margin: 10px; /*space between the buttons*/
+      }
+      .pathway-description {
+        display: none; /*completely hides hidden content and will only be available when its called*/
+        position: absolute;
+        left: 105%; /*appears at right edge of button*/
+        top: 50%;
+        margin-right: 50px; /*this line and next line are crucial for positioning */
+        transform: translateY(-50%);
+        background-color: #000;
+        color: #fff;
+        padding: 15px;
+        width: 300px;
+        /*max-width: 90vw; /*maximum width allowed*/
+        z-index: 100; /*high z-index makes sure not near the end of page*/
+        border-radius: 25px;
+        text-align: center;
+        font-style: monospace;
+        line-height: 1.4; /*looks more organized*/
+        /*max-height: 250px; /*don't cut off long text */
+        overflow-y: auto; /*automatically add a vertical scrollbar only when the content overflows*/
+        /*pointer-events: none; /*prevents hover from flickering*/
+        /*
+        animation-name: fadeIn;
+        animation-duration: 0.4s;
+        */
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      /*display description when hovering over container*/
+      .pathway-item:hover .pathway-description {
+        color: #fff;
+        display: block; /*makes description visible*/
+      }
+      .pathway-button {
+        cursor: pointer;
+        padding: 10px;
+        width: 100%;
+        max-width: 250px;
+        border-radius: 8px;
+        border: none;
+      }
+      .pathway-grid div:nth-child(even) .pathway-description {
+        left: auto;
+        right: 105%;
+      }
+      /* Targets the description ONLY inside the item with the 'last-item' class */
+      .pathway-item.last-item .pathway-description {
+        /* Reset the side positioning */
+        left: 50%;
+        right: auto;
+        top: auto;
+
+        /* Position it ABOVE the button */
+        bottom: 115%;
+
+        /* Center it horizontally */
+        transform: translateX(-50%);
+      }
+
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.85
+        ); /*transparent black dimming effect*/
+
+        /*smooth animation*/
+        animation-name: fadeIn;
+        animation-duration: 0.4s;
+      }
+      /*fade-in behavior*/
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .modal-content {
+        background-color: rgba(248, 240, 207, 0.99);
+        color: #000;
+        margin: 5% auto;
+        padding: 20px;
+        width: 600px;
+        height: 450px;
+        border-radius: 10px;
+
+        /*makes white box slide down slightly while fading in*/
+        position: relative;
+        animation-name: slideIn;
+        animation-duration: 0.4s;
+      }
+      @keyframes slideIn {
+        from {
+          top: -50px;
+          opacity: 0;
+        }
+        to {
+          top: 0;
+          opacity: 1;
+        }
+      }
+      .mockup-simulation {
+        background-color: #222;
+        color: #f6ac2a;
+        padding: 40px;
+        border-radius: 35px;
+        border: 2px solid #f6ac2a;
+        text-align: center;
+        margin: 20px auto;
+        width: 400px;
+        height: 270px;
+        font-family: monospace;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      #container {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-5%);
+      }
+      #container img {
+        width: 380px;
+        height: 200px;
+        display: block;
+        margin: 50px auto 0 auto;
+        padding: 20px;
+        background: #00717d;
+        border: 3mm ridge #fff;
+        border-radius: 100px 20px 90px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Franchisee</h1>
+    <span id="container">
+      <img
+        src="https://cdn.educba.com/academy/wp-content/uploads/2024/04/Franchising-Cookie-Point-1.png"
+        alt="franchising model"
+      />
+      <a
+        href="https://www.educba.com/franchising/"
+        style="
+          text-decoration-style: underline;
+          color: #00717d;
+          text-align: center;
+          display: block;
+        "
+        >Image Source</a
+      >
+    </span>
+    <h2><em>Tired of the 9-5? Own a Franchise!</em></h2>
+    <div class="middle-section">
+      <div class="wrapper">
+        <h5>
+          Franchisee is a program that turns ambitious learners into franchisees
+          or business partners by providing the resources necessary for them to
+          be successful
+        </h5>
+      </div>
+      <div>
+        <p>
+          <span class="vocab-terms">
+            <strong>What is a franchise?:</strong>
+            <span>
+              <em class="vocab-definitions"
+                >A franchise is an already established brand.</em
+              >
+            </span>
+          </span>
+          <br />
+          <span class="vocab-terms">
+            <strong>What is a franchisor?:</strong>
+            <span>
+              <em class="vocab-definitions">The owner of the franchise.</em>
+            </span>
+          </span>
+          <br />
+          <span class="vocab-terms">
+            <strong>What is a franchisee?:</strong>
+            <span>
+              <em class="vocab-definitions"
+                >An independent operator with the right to use the established
+                brand's name, systems, and IP.</em
+              >
+            </span>
+          </span>
+          <br />
+          <span class="vocab-terms">
+            <strong
+              >What are the eligibility requirements to join the
+              program?:</strong
+            >
+            <span>
+              <em class="vocab-definitions"
+                >Proof of financial stability and a diploma or degree</em
+              >
+            </span>
+          </span>
+          <br />
+          <span class="vocab-terms">
+            <strong>What if I don't meet the eligibility requirements?:</strong>
+            <span>
+              <em class="vocab-definitions"
+                >Email this address for individual review: sz@gmail.com</em
+              >
+            </span>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div>
+      <marquee>
+        <img
+          src="https://www.logo.wine/a/logo/McDonald's/McDonald's-Logo.wine.svg"
+          alt="McDonald's Logo"
+          width="100"
+          height="100"
+          style="margin-left: 55px"
+        />
+        <img
+          src="https://download.logo.wine/logo/Domino's_Pizza/Domino's_Pizza-Logo.wine.png"
+          alt="Dominos"
+          width="150"
+          height="100"
+          style="margin-left: 55px"
+        />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrVdpicEYgmrGNjfKLDyYg_5744dxa_ZMiVw&s"
+          alt="Shipley's Donuts"
+          width="100"
+          style="margin-left: 55px"
+        />
+        <img
+          src="data:image/png;base64,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"
+          alt="Jersey Mike's Subs"
+          width="120"
+          height="100"
+          style="margin-left: 55px"
+        />
+        <img
+          src="https://www.logo.wine/a/logo/United_Parcel_Service/United_Parcel_Service-Logo.wine.svg"
+          alt="UPS Store"
+          width="100"
+          height="100"
+          style="margin-left: 55px"
+        />
+        <img
+          src="https://www.pngall.com/wp-content/uploads/15/Popeyes-Logo-PNG-Image.png"
+          alt="Popeyes"
+          width="100"
+          style="margin-left: 55px"
+        />
+        <img
+          src="https://www.logo.wine/a/logo/Chick-fil-A/Chick-fil-A-Logo.wine.svg"
+          alt="Chick-fil-a"
+          width="100"
+          height="100"
+          style="margin-left: 55px"
+        />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4ExNtRsP9Flf6upUDChXp8JLLVIR8ncNOkA&s"
+          alt="Planet Fitness"
+          width="100"
+          style="margin-left: 55px"
+        />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIsHYlNlJ1sb7YEmXNiGXtipZLN2P5PcB7Pw&s"
+          alt="IKEA"
+          width="100"
+          style="margin-left: 55px"
+        />
+      </marquee>
+    </div>
+    <p class="learn-about-franchising">
+      Here are some familiar franchises!⤴️ / Learn more about franchising
+      <a
+        href="https://sopa.tulane.edu/blog/franchise-business-model-everything-you-need-know"
+        target="_blank"
+      >
+        here</a
+      >
+    </p>
+    <div class="menu-container">
+      <p>Menu:</p>
+      <span class="last-line-buttons">
+        Ready to become a franchisee or partner? Try the Mockup Simulator below!
+        <br />
+        <button id="chooseBrandBtn">Choose your established brand</button>
+        <br />
+        <small
+          ><strong
+            ><em style="font-family: &quot;Satisfy&quot;, cursive">
+              (Under Development)
+            </em></strong
+          ></small
+        >
+      </span>
+
+      <!--Modal Popup Overlay when button above is clicked screen dims-->
+      <div id="ModalOverlay" class="modal-overlay">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2><em>Pick Your Pathway</em></h2>
+          <hr />
+          <div class="pathway-grid">
+            <div class="pathway-item">
+              <button class="pathway-button">Academics/University</button>
+              <div class="pathway-description">
+                The paths to becoming a franchisee or an independent operator in
+                the education space can range from operating private
+                supplemental centers to complex
+                <br />
+                partnerships that deliver a university's degree programs.
+                <hr />
+                <strong style="color: #f6ac2a"
+                  ><em>In this pathway you will learn about:</em></strong
+                >
+                Individual investing, transnational education franchising,
+                public-private partnerships,
+                <br />
+                subcontractual delivery and more.
+              </div>
+            </div>
+
+            <div class="pathway-item">
+              <button class="pathway-button">Cereal Buffet Shop</button>
+              <div class="pathway-description">
+                Ever seen a fast food place in a grocery store? This is a
+                symbiotic relationship between the host establishment and the
+                subtenant. In this path, the host is a hotel, your brand is the
+                subtenant, and your small business, (that you hope to turn into
+                a franchise one day), is a Cereal Buffet Shop.
+
+                <hr />
+                <strong style="color: #f6ac2a"
+                  ><em>In this pathway you will learn about:</em></strong
+                >
+                Creating your brand/franchise, Host-Location Franchising,
+                Non-Traditional Site Selection, how to pitch your brand,
+                analysis of the risks and benefits for the host, your store and
+                more.
+              </div>
+            </div>
+
+            <div class="pathway-item">
+              <button class="pathway-button">🔒Movie Theater🔒</button>
+              <div class="pathway-description">
+                Like watching movies? Although most major national chains are
+                corporate-owned, becoming a franchisee for a luxury or niche
+                cinema is still possible. Since these locations are more lavish
+                and serve high-end food and drinks, its important to learn how
+                to recreate that familiar experience and not just build another
+                traditional movie theater.
+                <hr />
+                <strong style="color: #f6ac2a"
+                  ><em>In this pathway you will learn about:</em></strong
+                >
+                Basics and Combination of Real Estate and Hospitality,
+                management of a theater, and more.
+              </div>
+            </div>
+
+            <div class="pathway-item">
+              <button class="pathway-button">The Mall System</button>
+              <div class="pathway-description">
+                Think of your favorite mall or shopping center and ask yourself
+                what is it missing that could make it better? In this path,
+                learn the process of acquiring and managing a store, a food
+                court vendor, and/or outparcel establishments.
+                <hr />
+                <strong style="color: #f6ac2a"
+                  ><em>In this pathway you will learn about:</em></strong
+                >
+                Diverse Portfolio: How to Acquire Multiple Establishments in the
+                Mall, how and what role an establishment plays in the mall
+                experience, and more.
+              </div>
+            </div>
+
+            <br />
+            <br />
+
+            <div class="pathway-item last-item">
+              <button class="pathway-button">The Mall System: Cider</button>
+              <div class="pathway-description">
+                Cider is an e-commerce clothing store. After recently opening a
+                physical store in 2026, there likely could be another opening.
+                In this path, learn how to negotiate why you are the perfect
+                manager for the store and why the next opening should be in a
+                mall.
+                <hr />
+                <strong style="color: #f6ac2a"
+                  ><em>In this pathway you will learn about:</em></strong
+                >
+                Project Management, The Art of Negotiation, and more.
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+          <small
+            ><em
+              >*Please note this is a simulation actual results and processes
+              may vary</em
+            ></small
+          >
+          <div id="simulation-display" style="display: none"></div>
+        </div>
+      </div>
+
+      <span class="last-line-buttons:last-child">
+        Apply for the program:<button class="sign-up-button">Sign Up</button>
+      </span>
+      <hr />
+      <br />
+      <p>Our Program Pathways</p>
+      <small
+        ><em
+          >*pathways are constantly updated depending on what is currently
+          available</em
+        ></small
+      >
+      <ul>
+        <li>Academics/University</li>
+        <li>Cereal Buffet Shop</li>
+        <li style="text-decoration-line: line-through">Movie Theater</li>
+        <li>The Mall System</li>
+        <li>
+          <a href="https://www.shopcider.com"
+            ><img
+              src="https://media.licdn.com/dms/image/v2/C560BAQGGOOm4ke5S0Q/company-logo_200_200/company-logo_200_200/0/1638643694190/shopcider_logo?e=2147483647&v=beta&t=VcsdXw4JoYeDt1WKljeqlkwwck3S-kEN52DLPl5ZGjk"
+              alt="Cider Website"
+              width="100"
+              height="80" /></a
+          >©
+        </li>
+      </ul>
+      <hr />
+      <p><em>Keep in mind</em></p>
+      <small>
+        **Being a corporate partner, a franchisee, owning a business, or any
+        other business ownership or management are completely different
+        processes. Know the difference by doing your own research then decide
+        which career path is best for you**
+      </small>
+    </div>
+    <hr />
+    <footer>
+      <small>
+        <strong
+          ><em>
+            This page was built by
+            <a href="https://github.com/szouga" target="_blank"
+              >Sophie Clement Zouga Ndong</a
+            >
+          </em></strong
+        >
+      </small>
+    </footer>
+
+    <script>
+      //target the button and modal
+      const establishedBrandButton = document.getElementById("chooseBrandBtn");
+      const modal = document.getElementById("ModalOverlay");
+      const closeSpan = document.querySelector(".close");
+      const displayArea = document.getElementById("simulation-display");
+      //reference grid so it can be hidden when necessary
+      const grid = document.querySelector(".pathway-grid");
+      const modalTitle = document.querySelector(".modal-content h2");
+
+      function showLetter() {
+        document.getElementById("letterSection").style.display = "block";
+        const iframeSection = displayArea.querySelector("section");
+        const continueBtn = document.getElementById("continueBtn");
+
+        if (iframeSection) iframeSection.style.display = "none";
+        if (continueBtn) continueBtn.style.display = "none";
+      }
+
+      function finishSimulation() {
+        alert(
+          "Link takes you to another website to formally fill out the form. Congratulations!",
+        );
+
+        document.getElementById("letterSection").innerHTML = `
+    <h2>✅ Completed</h2>
+    <p>You have successfully finished the simulation.</p>
+  `;
+      }
+
+      //activate modal on click
+      establishedBrandButton.onclick = function () {
+        modal.style.display = "block";
+      };
+      //close when 'x' is clicked
+      closeSpan.onclick = function () {
+        modal.style.display = "none";
+        location.reload(); //refresh to reset simulation
+      };
+      //target area where simulation will appear
+      //Logic for pathway buttons
+      modal.onclick = function (event) {
+        if (event.target.classList.contains("pathway-button")) {
+          let pathway = event.target.innerText; //get the name of the button
+          //modal.style.display = "none"; //hide the modal so simulation will appear
+
+          //hide the selection grid so the simulation can be displayed
+          grid.style.display = "none";
+          modalTitle.style.display = "none";
+          displayArea.style.display = "block";
+          if (pathway === "Academics/University") {
+            alert("Commencing Academics/University Simulation");
+            let name = prompt("What is your name: ");
+            let college = prompt(
+              "If you had a college what would its main focus be? (STEM, Music, Athletics etc.)",
+            );
+            alert("........Analyzing Contracts......");
+            alert(".........Preparing Research........");
+            alert("....Loading Academic Partnership Process Pathway.......");
+            displayArea.innerHTML = `
+                  <section>
+                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSQmEZ5nGtjk0GIzvIHE2rBfK3m6kSsq8i-9CxqgOcRRqiB-GeWjAtFzN338OP7AEI792sxRE_EAVk_/pubembed?start=false&loop=false&delayms=3000" 
+                    frameborder="0" 
+                    width="605" 
+                    height="360" 
+                    allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+
+                    </iframe>
+                    </section>
+                  
+
+            <div style="display:flex; justify-content:center; margin-top: -50px;">
+              <button id="continueBtn" style="padding:10px 20px; font-size:16px;">
+              Continue
+              </button>
+            </div>
+
+            <!--letter comes after video-->
+  
+            <div class="mockup-simulation" id="letterSection" style="display:none;">
+                    <em>Your Email Inbox</em><br><br>
+                    <strong>SUBJECT:</strong> Franchisee University wants to give you a personal thank you
+                    <div>
+                    Dear ${name}, <br><br>
+
+                    I am delighted to share that in recognition of your 
+                    transformative contribution to <em>Franchisee University</em>, 
+                    the Board of Trustees has authorized me to formally recommend 
+                    naming our new School of ${college} in your honor. <br> <br>
+
+                    We believe this brand new college will encapsulate your dedication and inspire future generations of students
+                    to do the same. If you approve of the name please submit to the email address below
+                    and we'll get started right away!
+
+                    Official Name of College: ${name} College of ${college}
+                    Feel free to see us in our office or email if you have any questions
+                    Sincerely,
+                    Chancellor of Franchisee University
+                    </div>
+                      <button onclick="finishSimulation()">SUBMIT</button>
+                  </div>
+                `;
+            document.getElementById("continueBtn").onclick = showLetter;
+            document.getElementById("submitBtn").onclick = finishSimulation;
+          } else if (pathway === "Cereal Buffet Shop") {
+            alert("Commencing Cereal Buffet Shop Simulation");
+            let cereal = prompt("What's your favorite cereal?");
+            alert(`${cereal} is a great choice! `);
+            alert("....Loading Host-Location Franchising Pathway.......");
+            displayArea.innerHTML = `
+            <section>
+              <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRBwWq-5KkTFD0TLhnRRgFL3H_FLCNngvg0KXsH100_OA2sFVp6rom2v7a_uiXl3jDh5rT4LV4dd0G0/pubembed?start=false&loop=false&delayms=3000" 
+            frameborder="0" 
+            width="605" 
+            height="360" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+          </iframe>
+            </section>
+            `;
+          } else if (pathway === "🔒Movie Theater🔒") {
+            alert("This program pathway is currently unavailable");
+          } else if (pathway === "The Mall System") {
+            displayArea.innerHTML = `
+                  <section class="simulator">
+                    <iframe 
+                    src="https://docs.google.com/presentation/d/e/2PACX-1vTQQXALvnLLi24VtlB7BWEYvHGt0DO8nP0drRavdB5mhXeq5NmvnEQyhIOOF5wq8VO25_KNTOW15wRu/pubembed?start=false&loop=false&delayms=3000" 
+                    frameborder="0" 
+                    width="605" 
+                    height="460" 
+                    allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+
+                    </iframe>
+                  </section>`;
+          } else if (pathway === "The Mall System: Cider") {
+            let email = prompt("What is your email?");
+            let pitch = prompt(
+              "Why are you the perfect manager for Cider and why should the upcoming store be in a mall?",
+            );
+            displayArea.innerHTML = `
+                    <div class="mockup-simulation">
+                      <h2>The Art of Negotiation</h2>
+                      <h4>You already own multiple businesses in the Mall area, 
+                        so showing the financial stability is no issue. 
+                        Now you must convince the Cider team why you are 
+                        the perfect manager for the first physical Cider 
+                        store in your region and why it should specifically 
+                        be in a mall.</h4>
+                      <p>Your Pitch: "${pitch}"</p>
+                    </div>`;
+            alert("Negotiation Mode Activated (Improving your pitch with AI)");
+            alert(
+              "The Board of Directors is reviewing your pitch and will contact you shortly",
+            );
+          }
+        }
+      };
+      // close when click anywhere on the black overlay
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+          location.reload();
+        }
+      };
+      function handleSignUpClick() {
+        let response = prompt("Why would you like to apply for this program?");
+        let email = prompt("What is your email?");
+
+        if (response && email) {
+          alert(
+            "Thank you for your interest! We've received your message and we'll contact you shortly by email: " +
+              email,
+          );
+        } else {
+          alert("Please complete both fields to submit your application.");
+        }
+      }
+      let signUpBtn = document.querySelector(".sign-up-button");
+      signUpBtn.addEventListener("click", handleSignUpClick);
+    </script>
+  </body>
+</html>
